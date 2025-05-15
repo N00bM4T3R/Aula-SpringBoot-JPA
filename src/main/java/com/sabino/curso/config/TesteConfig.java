@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.sabino.curso.entities.Category;
 import com.sabino.curso.entities.Order;
+import com.sabino.curso.entities.OrderItem;
 import com.sabino.curso.entities.Product;
 import com.sabino.curso.entities.User;
 import com.sabino.curso.enums.OrderStatus;
 import com.sabino.curso.repositories.CategoryRepositories;
+import com.sabino.curso.repositories.OrderItemRepositories;
 import com.sabino.curso.repositories.OrderRepositories;
 import com.sabino.curso.repositories.ProductRepositories;
 import com.sabino.curso.repositories.UserRepositories;
@@ -33,6 +35,10 @@ public class TesteConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepositories productRepository;
+	
+	@Autowired
+	private OrderItemRepositories orderItemRepository;
+	
 	
 	
 
@@ -71,9 +77,18 @@ public class TesteConfig implements CommandLineRunner {
 		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2, OrderStatus.PAIDY);
 		Order o3 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u2, OrderStatus.DELIVERED); 
 		
+	
+		
 		userRepositories.saveAll(Arrays.asList(u1,u2));
 		orderRepositories.saveAll(Arrays.asList(o1,o2,o3));
 		
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
+
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
 	}
 

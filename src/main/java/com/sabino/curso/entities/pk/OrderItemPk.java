@@ -7,6 +7,7 @@ import com.sabino.curso.entities.Order;
 import com.sabino.curso.entities.Product;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -14,9 +15,11 @@ import jakarta.persistence.ManyToOne;
 public class OrderItemPk implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
