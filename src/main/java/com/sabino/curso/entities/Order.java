@@ -1,6 +1,7 @@
 package com.sabino.curso.entities;
 
 import java.io.Serializable;
+
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sabino.curso.enums.OrderStatus;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -42,7 +44,7 @@ public class Order implements Serializable {
 	public Integer orderStatus;
 	
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> Items = new HashSet<>();
+	private Set<OrderItem> items = new HashSet<>();
 	
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
@@ -129,8 +131,16 @@ public class Order implements Serializable {
 
 
 	public Set<OrderItem> getItem() {
-		return Items;
+		return items;
 		
+	}
+	
+	public Double getTotal() {
+		Double sum = 0.0;
+		for (OrderItem x : items) {
+			sum +=  x.getSubtotal();
+		}
+		return sum;
 	}
 
 	@Override
