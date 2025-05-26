@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.sabino.curso.entities.Category;
 import com.sabino.curso.entities.Order;
 import com.sabino.curso.entities.OrderItem;
+import com.sabino.curso.entities.Payment;
 import com.sabino.curso.entities.Product;
 import com.sabino.curso.entities.User;
 import com.sabino.curso.enums.OrderStatus;
@@ -82,11 +83,17 @@ public class TesteConfig implements CommandLineRunner {
 		userRepositories.saveAll(Arrays.asList(u1,u2));
 		orderRepositories.saveAll(Arrays.asList(o1,o2,o3));
 		
+	
+		
 		
 		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
 		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
 		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
+		
+		Payment py = new Payment(null,Instant.parse("2019-06-20T21:53:07Z") , o1);
+		o1.setPayment(py);
+		orderRepositories.save(o1);
 
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 		
