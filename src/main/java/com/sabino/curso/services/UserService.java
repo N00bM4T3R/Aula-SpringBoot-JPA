@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.sabino.curso.entities.User;
 import com.sabino.curso.repositories.UserRepositories;
+import com.sabino.curso.services.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -24,7 +25,7 @@ public class UserService {
   
   public User findById(Long Id) {
 	  Optional<User> opitinoal = repository.findById(Id);
-	  return opitinoal.get();
+	  return opitinoal.orElseThrow(() -> new ResourceNotFoundException(Id));
   }
   public User insert(User obj) {
 	  return repository.save(obj);
