@@ -26,3 +26,5 @@ A aplicação consiste em criar uma aplicação back-end para criar e manipular 
 # Autor
 
 Sabino Lucas de Barros Neto
+
+https://www.linkedin.com/in/sabino-lucas-de-barros-neto-19627130a/
