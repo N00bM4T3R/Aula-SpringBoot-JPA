@@ -20,6 +20,8 @@ A aplicação consiste em criar uma aplicação back-end para criar e manipular 
 - Spring Boot
 - JPA / Hibernate
 - Maven
+ ## Banco de dados
+- H2
 
 # Autor
 
